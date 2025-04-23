@@ -6,24 +6,26 @@ function Directors() {
 
   useEffect(() => {
     fetch("http://localhost:4000/directors")
-      .then((response) => response.json())
-      .then((data) => setDirectors(data))
-      .catch((error) => console.log("Error fetching:", error));
+      .then((r) => r.json())
+      .then((data) => {
+        setDirectors(data);
+      });
   }, []);
 
   return (
     <>
       <header>
-        <h1>Directors Page</h1>
         <NavBar />
       </header>
       <main>
+        <h1>Directors Page</h1>
         {directors.map((director) => (
-          <article key={director.name}>
-            <h2>{director.name}</h2>
+          <article key={director.id}>
+            <h2>Name: {director.name}</h2>
             <ul>
-              {director.movies.map((movie, idx) => (
-                <li key={idx}>{movie}</li>
+              Movies:
+              {director.movies.map((movie, index) => (
+                <li key={index}>{movie}</li>
               ))}
             </ul>
           </article>
